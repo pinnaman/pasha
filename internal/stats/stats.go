@@ -4,7 +4,7 @@ import (
 	"math"
 	"sync"
 
-	"github.com/pinnaman/gostats/gen"
+	"pasha/internal/gen"
 )
 
 var wg sync.WaitGroup
