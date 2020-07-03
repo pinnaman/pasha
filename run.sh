@@ -4,7 +4,9 @@ echo "Building API Server"
 #cd ~/pasha/cmd
 #CompileDaemon -command="./cmd/api" &
 #CompileDaemon -log-prefix=false -build="go build -o /home/ajay/pasha/cmd" -command="./api" &
-CompileDaemon -log-prefix=false -build="go build ./cmd/api" -command="./api" &
+#CompileDaemon -log-prefix=false -build="go build ./cmd/api -o ./bin" -command="./bin/api" &
+CompileDaemon -log-prefix=false -build="go build -o ./bin ./cmd/api" -command="./bin/api" &
+
 
 ps -ef|grep Compile|grep -v grep
 
