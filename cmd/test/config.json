@@ -1,0 +1,29 @@
+
+[
+        {
+            "name": "New York Times - Technology",
+            "url": "http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+        },
+        {
+            "name": "New York Times - Bits",
+            "url": "https://bits.blogs.nytimes.com/feed/"
+        },
+        {
+            "name": "Wall Street Journal - Markets",
+            "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"
+        },
+        {
+            "name": "Wall Street Journal - US Business",
+            "url": "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml"
+        },
+        {
+            "name": "Wall Street Journal - Technology",
+            "url": "https://feeds.a.dj.com/rss/RSSWSJD.xml"
+        },
+        {
+            "name": "YCombinator - News",
+            "url": "https://news.ycombinator.com/rss"
+        }
+
+]
+ 

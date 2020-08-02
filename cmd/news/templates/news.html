@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+</head>
+
+<body style="background-color:green;"></body>
+
+<div style="background-color:salmon">
+    <h4>{{"Last Refreshed"}}</h4>
+<div style="background-color:slategrey">
+
+<h1>{{.Title}}</h1>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+   <!--- <col width="35%">
+    <col width="65%">  -->
+    <thead>
+        <tr>
+            <th>Srce</th>
+            <th>Url</th>
+          <!---  <th>Description</th>  -->
+            <th>PubDate</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        {{ range $key, $value := .News }}
+        <tr>
+            <td>{{ $value.Srce }}</td>
+        <!--    <td><a href="{{ $value.Url }}" target='_blank'>{{ $value.Url }}</td>
+            <td>{{ $value.Description }}</td>  -->
+            <td><a href="{{ $value.Url }}" target='_blank'>{{ $value.Description }}</td>
+            <td>{{ $value.PubDate }}</td>
+        </tr>
+        {{ end }}
+    </tbody>
+</table>
+
+<script>
+$(document).ready(function () {
+ //  $('#example').DataTable(); 
+  var table = $('#example').removeAttr('width').DataTable( {
+   /*     scrollY:        "100px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false, */
+        order: [[ 2, "desc" ]] ,
+        columnDefs: [
+            { width: 20, targets: 0 },
+            { width: 50, targets: 1 },
+            { width: 80, targets: 2 }
+        ],
+        fixedColumns: true
+    } );
+});</script>
+
+</div>
+</div>
+</body>
+</html>
