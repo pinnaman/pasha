@@ -6,11 +6,11 @@ services:
     ports:
       - "54320:5432"
     environment:
-      POSTGRES_DB: 'ddoor_db'
+      POSTGRES_DB: 'pasha_ddoor_db'
       POSTGRES_HOST_AUTH_METHOD: "trust"
       POSTGRES_USER: 'postgres'
     volumes:
-      - news_data:/var/lib/postgresql/data
+      - pasha_news_data:/var/lib/postgresql/data
       -       ./scripts:/scripts
 volumes:
-  news_data:
+  pasha_news_data:

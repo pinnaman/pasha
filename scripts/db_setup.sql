@@ -1,6 +1,6 @@
-CREATE database ddoor_db;
+CREATE database pasha_ddoor_db;
 
-\c ddoor_db
+\c pasha_ddoor_db
 
 DROP table news;
 

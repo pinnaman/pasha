@@ -11,7 +11,6 @@ killall -9 CompileDaemon
 killall -9 api
 killall -9 news
 
-docker stop datadoor
 docker rm -f datadoor
 docker-compose up -d  # creates and start the postgres container
 
@@ -23,31 +22,18 @@ echo "#***********Building Postgres News DB and Installing Go Libs on HOST******
 # Below Golang Docker app not used currently, app run directly on host
 #docker build -t pinnaman/datadoor . # creates the go app container
 
-docker volume rm news_data
-docker volume create news_data
+docker volume rm pasha_news_data
+docker volume create pasha_news_data
 
-###################################
-# Below not required, created and started using docker compose below
-#docker run -d --name datadoor -v news_data:/var/lib/postgresql/data -v $(pwd)/scripts:/scripts -p 54320:5432 postgres:12-alpine
-#docker run -d --rm --name datadoor \
-#-e POSTGRES_PASSWORD=postgres \
-#-v news_data:/var/lib/postgresql/data \
-#-v $(pwd)/scripts:/scripts \
-#-p 54320:5432 postgres:12-alpine
-#############################
+docker stop datadoor
 docker rm -f datadoor
 docker-compose up -d  # creates and start the postgres container
 
 sleep 20
 
-echo "create news database"
-docker exec -it datadoor psql -h localhost -U postgres -f ./scripts/db_setup.sql
-echo "loading news database...."
-docker exec -i datadoor psql -U postgres -d ddoor_db < pg_data/pg_backup.sql
+echo "create and set up news database"
+~/pasha/scripts/load_pgdb.sh
 
-# Add below to ~/.bashrc
-#echo 'export GOPATH=$HOME/go' >> ~/.bashrc
-#echo 'export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin' >> ~/.bashrc
 source ~/.bashrc
 # Install Go version Centrally (/usr/local/bin)
 go version
@@ -68,5 +54,6 @@ CompileDaemon -log-prefix=false -build="go build -o ./bin ./cmd/news/" -command=
 netstat -antp|grep tcp6
 ps -ef|grep Compile|grep -v grep
 
+echo "##*************TESTS****************##"
 echo "#****Running a Test API Routes*****#"
 curl localhost:8090?name=ajay

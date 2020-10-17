@@ -15,7 +15,6 @@ import (
 	"os/signal"
 	"syscall"
 
-	///"text/template"
 	"time"
 
 	"github.com/gobuffalo/packr/v2"
@@ -73,11 +72,11 @@ const (
 	port     = 54320
 	user     = "postgres"
 	password = "postgres"
-	dbname   = "ddoor_db"
+	dbname   = "pasha_ddoor_db"
 )
 
 // relative include path, converted to absolute path by packr
-var templatesBox = packr.New("Templates", "./templates")
+var templatesBox = packr.New("Templates", "templates")
 var assetBox = packr.New("Assets", "./assets")
 var dataBox = packr.New("Data", "./data")
 var url = "https://www.washingtonpost.com/news-sitemaps/business.xml"
@@ -333,7 +332,6 @@ func main() {
 
 	r.HandleFunc("/", indexHandler)
 	r.HandleFunc("/health", healthHandler)
-	///r.HandleFunc("/readiness", readinessHandler)
 	r.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
 	r.HandleFunc("/hello", helloHandler)
 	r.HandleFunc("/news", newsHandler)
